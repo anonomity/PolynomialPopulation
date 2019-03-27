@@ -30,8 +30,8 @@ def create_cluster(x_min, x_max,y_min , y_max):
 #####################################################################################################
 
 ####parameters#####
-d = 3  #degree
-num = 49 #maxpop
+d = 2  #degree
+num = 100 #maxpop
 
 #negative cluster
 n = create_cluster(-5,-1,-7,-1)
@@ -51,6 +51,7 @@ p=first.create_population(d,num,n,p)
 
 mf = first.natural_selection(p,num,n,p)
 
+print("generation : " + str(first.generations) + " Average fitness = " + str(first.getAverageFitness(p,n,p)))
 
 first.newPop(p,mf)
 
@@ -58,8 +59,9 @@ print("generation : " + str(first.generations))
 
 first.calc_fitness(num,n,p)
 
+print("generation : " + str(first.generations) + " Average fitness = " + str(first.getAverageFitness(p,n,p)))
 
-def findBest(self, pop):
-
-
-
+for i in range(100):
+    first.newPop(p,mf)
+    first.calc_fitness(num,n,p)
+    print("generation : " + str(first.generations) + " Average fitness = " + str(first.getAverageFitness(p,n,p)))

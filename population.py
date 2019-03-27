@@ -52,7 +52,7 @@ class population:
         popu =self.popu
         for w in range(amount):
             popu[w].fitness(cluster1, cluster2)
-            print(popu[w].fitness(cluster1, cluster2))
+            #print(popu[w].fitness(cluster1, cluster2))
             popu[w].plotDNA(cluster1, cluster2)
         return popu
 
@@ -98,3 +98,16 @@ class population:
         self.generations = self.generations + 1
 
         return self.pop
+
+
+    def getAverageFitness(self,pop,cluster1,cluster2):
+        self.cluster1 = cluster1
+        self.cluster2 = cluster2
+        self.pop = pop
+
+        popAvg = 0
+        for i in range(len(pop)):
+            popAvg = popAvg + pop[i].fitness(cluster1,cluster2)
+
+        popPer = popAvg / (len(pop) * 10)
+        return popPer
