@@ -1,7 +1,5 @@
-from DNA import DNA
-import numpy as np
+from src.DNA import DNA
 from matplotlib import pyplot as plt
-import pdb
 import random
 
 class population:

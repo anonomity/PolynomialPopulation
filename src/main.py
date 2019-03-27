@@ -1,8 +1,6 @@
-from DNA import DNA
 import random
 from matplotlib import pyplot as plt
-import numpy as np
-from population import population
+from src.population import population
 
 #how many dots do you want in each cluster
 numOfClus= 10

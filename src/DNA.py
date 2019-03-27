@@ -1,10 +1,7 @@
-from Polynomial import Polynomial
+from src.Polynomial import Polynomial
 import numpy as np
 import random
 from matplotlib import pyplot as plt
-import pdb
-
-
 
 
 class DNA:
