@@ -5,12 +5,13 @@ import random
 class population:
 
 
-    def __init__(self, d, amount, cluster1, cluster2):
+    def __init__(self, d, amount, cluster1, cluster2,mutation):
         self.d = d
         self.amount = amount
         self.cluster1 = cluster1
         self.cluster2 = cluster2
         self.generations = 0
+        self.mutation = mutation
         numofClus = len(cluster1)
 
 
@@ -73,12 +74,13 @@ class population:
 
 
 
-    def newPop(self,pop,mp):
+    def newPop(self,pop,mp,mutation):
 
         self.mp = mp
         self.pop = pop
         length = len(pop)
         leng = len(mp)
+        random.shuffle(mp)
         if leng > 0:
             for i in range(length):
                 m = random.randint(0,leng-1)
@@ -90,13 +92,21 @@ class population:
                 F = mp[f]
 
                 child = M.crossover(F)
-
+                child.mutate(mutation)
                 self.pop[i] = child
 
         self.generations = self.generations + 1
 
         return self.pop
 
+    def getBest(self):
+        record = 0.0
+        index = 0
+        for i in range(len(self.pop)):
+            if self.pop[i].fitness(self.cluster1,self.cluster2) > record:
+                index = i
+                record = self.pop[i].fitness(self.cluster1,self.cluster2)
+        return record
 
     def getAverageFitness(self,pop,cluster1,cluster2):
         self.cluster1 = cluster1
@@ -108,4 +118,4 @@ class population:
             popAvg = popAvg + pop[i].fitness(cluster1,cluster2)
 
         popPer = popAvg / (len(pop) * 10)
-        return popPer
+        return popPer*100

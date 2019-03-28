@@ -1,9 +1,9 @@
 import random
 from matplotlib import pyplot as plt
 from src.population import population
-
+import pdb
 #how many dots do you want in each cluster
-numOfClus= 10
+numOfClus= 50
 
 #Create the environment for the Polynomial
 def create_cluster(x_min, x_max,y_min , y_max):
@@ -29,7 +29,9 @@ def create_cluster(x_min, x_max,y_min , y_max):
 
 ####parameters#####
 d = 2  #degree
-num = 100 #maxpop
+num = 1000 #maxpop
+mutationRate = 0.2
+
 
 #negative cluster
 n = create_cluster(-5,-1,-7,-1)
@@ -43,7 +45,7 @@ p = create_cluster(1,6,4,9)
 
 
 
-first = population(d,num,n,p)
+first = population(d,num,n,p,mutationRate)
 print("generation : " + str(first.generations))
 p=first.create_population(d,num,n,p)
 
@@ -51,7 +53,7 @@ mf = first.natural_selection(p,num,n,p)
 
 print("generation : " + str(first.generations) + " Average fitness = " + str(first.getAverageFitness(p,n,p)))
 
-first.newPop(p,mf)
+first.newPop(p,mf,mutationRate)
 
 print("generation : " + str(first.generations))
 
@@ -59,7 +61,7 @@ first.calc_fitness(num,n,p)
 
 print("generation : " + str(first.generations) + " Average fitness = " + str(first.getAverageFitness(p,n,p)))
 
-for i in range(100):
-    first.newPop(p,mf)
+for i in range(25):
+    first.newPop(p,mf,mutationRate)
     first.calc_fitness(num,n,p)
-    print("generation : " + str(first.generations) + " Average fitness = " + str(first.getAverageFitness(p,n,p)))
+    print("generation : " + str(first.generations) + " best bitch = " + str(first.getBest()))

@@ -2,6 +2,7 @@ from src.Polynomial import Polynomial
 import numpy as np
 import random
 from matplotlib import pyplot as plt
+import pdb
 
 
 class DNA:
@@ -74,7 +75,6 @@ class DNA:
 
         sunder = 0
         sover = 0
-
         polyy = []
 
         for i in range(numOfClus):
@@ -142,3 +142,11 @@ class DNA:
                 child.genes[i] = DNAfather.genes[i]
 
         return child
+
+
+    def mutate(self,mutation):
+        e = self.genes[0]
+        for i in range(len(self.a)):
+            if random.random() < mutation:
+                e.coef[i] = Polynomial(random.randint(-5, 5))
+
